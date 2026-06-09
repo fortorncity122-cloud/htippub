@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Trademark Data Search</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="login-body">
+    <div class="login-container card">
+        <div class="app-header" style="border-bottom: none; padding-bottom: 0;">
+            <h1>Trademark Data Search</h1>
+            <p class="version">Version 6.1</p>
+        </div>
+        
+        <form id="loginForm" style="margin-top: 20px;">
+            <div class="input-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" placeholder="Enter username" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter password" required>
+            </div>
+            <button type="submit" class="btn btn-primary" style="margin-top: 10px;">Login</button>
+            <p id="loginError" class="error" style="display: none; text-align: center; margin-top: 15px;">Invalid username or password.</p>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const user = document.getElementById('username').value;
+            const pass = document.getElementById('password').value;
+
+            if (user === 'admin' && pass === 'admin') {
+                // FIXED: Changed to localStorage so auth persists across new tabs
+                localStorage.setItem('isAuth', 'true');
+                window.location.href = 'searchjson.html';
+            } else {
+                document.getElementById('loginError').style.display = 'block';
+            }
+        });
+    </script>
+</body>
+</html>
